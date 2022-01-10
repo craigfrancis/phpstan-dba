@@ -4,6 +4,7 @@ namespace SyntaxErrorInQueryMethodRuleTest;
 
 use PDO;
 use mysqli;
+use Doctrine\DBAL\Connection;
 
 class Foo
 {
@@ -74,5 +75,11 @@ class Foo
     public function syntaxErrorPdoPrepare(PDO $pdo)
     {
         $pdo->prepare('SELECT email adaid WHERE gesperrt freigabe1u1 FROM ada');
+    }
+	
+	public function syntaxErrorDoctrineDbal(Connection $conn)
+    {
+		$sql = "SELECT email adaid WHERE gesperrt freigabe1u1 FROM ada";
+        $stmt = $conn->query($sql);
     }
 }
